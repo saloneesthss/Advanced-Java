@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -7,18 +8,21 @@ public class App {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/swastikdb?useSSL=false", "root", "");
             String sql = "insert into tblstudent (Id, Name, Gender, Address) values (?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql);
-            String[][] students = {
-                {"1", "Salonee", "Female", "Thimi"},
-                {"2", "Simran", "Female", "Baneshwor"},
-                {"3", "Seokjin", "Male", "Bhaktapur"},
-                {"4", "Krisha", "Female", "Lalitpur"},
-                {"5", "Lalit", "Male", "Kathmandu"}
-            };
-            for (String[] student : students) {
-                ps.setString(1, student[0]);
-                ps.setString(2, student[1]);
-                ps.setString(3, student[2]);
-                ps.setString(4, student[3]);
+            Scanner sc = new Scanner(System.in);
+            for (int i=1; i<=5; i++) {
+                System.out.println("Student " + i + ":");
+                System.out.print("Enter id: ");
+                String id = sc.nextLine();
+                System.out.print("Enter name: ");
+                String name = sc.nextLine();
+                System.out.print("Enter gender: ");
+                String gender = sc.nextLine();
+                System.out.print("Enter address: ");
+                String address = sc.nextLine();
+                ps.setString(1, id);
+                ps.setString(2, name);
+                ps.setString(3, gender);
+                ps.setString(4, address);
                 ps.executeUpdate();
             }
             System.out.println("Records inserted successfully.");
@@ -35,6 +39,7 @@ public class App {
                     rs.getString("Address")
                 );
             }
+            sc.close();
             con.close();
         } catch(Exception e) {
             System.out.println(e);
