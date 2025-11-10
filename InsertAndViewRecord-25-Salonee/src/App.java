@@ -16,6 +16,7 @@ public class App {
                 System.out.print("Enter name: ");
                 String name = sc.nextLine();
                 System.out.print("Enter gender: ");
+                
                 String gender = sc.nextLine();
                 System.out.print("Enter address: ");
                 String address = sc.nextLine();
