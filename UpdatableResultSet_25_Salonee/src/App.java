@@ -8,6 +8,7 @@ public class App {
             System.out.println("Enter Employee ID to search: ");
             Scanner sc = new Scanner(System.in);
             int empId = sc.nextInt();
+            sc.nextLine();
             String sql = "SELECT * FROM emp WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ps.setInt(1, empId);
